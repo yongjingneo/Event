@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Event</string>
+    <string name="newEvent">New Event</string>
+    <string name="title">Title: </string>
+    <string name="date">Date: </string>
+    <string name="descrip">Description: </string>
+    <string name="addEvent">Add Event</string>
+    <string name="update">Update</string>
+</resources>
