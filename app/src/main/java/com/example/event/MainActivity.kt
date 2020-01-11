@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                         eventList.add(event!!)
                     }
 
-                    val adapter = eventAdapter(applicationContext, R.layout.event_layout, eventList)
+                    val adapter = eventAdapter(this@MainActivity, R.layout.event_layout, eventList)
                     listView.adapter = adapter
                 }
             }
