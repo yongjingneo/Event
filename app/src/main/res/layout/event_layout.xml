@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     android:paddingTop="16dp"
     android:paddingBottom="16dp">
@@ -10,6 +11,7 @@
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#ABD5DF"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -19,13 +21,15 @@
         android:id="@+id/txtDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#ABD5DF"
         android:text="TextView"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="#646464" />
 
     <TextView
         android:id="@+id/txtDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#ABD5DF"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
