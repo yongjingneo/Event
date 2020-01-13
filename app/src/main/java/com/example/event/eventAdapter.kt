@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<eventClass>)
@@ -20,6 +21,7 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
         val txtDate = view.findViewById<TextView>(R.id.txtDate)
         val txtDescription = view.findViewById<TextView>(R.id.txtDescription)
         val btnUpdate = view.findViewById<Button>(R.id.btnUpdate)
+        val btnDelete = view.findViewById<Button>(R.id.btnDelete)
 
         val event = eventList[position]
 
@@ -29,6 +31,10 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
         btnUpdate.setOnClickListener(){
             updateEvent(event)
+        }
+
+        btnDelete.setOnClickListener(){
+            deleteEvent(event)
         }
 
         return view
@@ -86,5 +92,13 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
         val alert = builder.create()
         alert.show()
 
+    }
+
+    private fun deleteEvent(event: eventClass){
+        val dbEvent = FirebaseDatabase.getInstance().getReference("events").child(event.id)
+
+        dbEvent.removeValue()
+
+        Toast.makeText(mCtx,"Event deleted.",Toast.LENGTH_LONG).show()
     }
 }

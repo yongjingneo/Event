@@ -15,4 +15,10 @@
         <item name="android:paddingBottom">18dp</item>
     </style>
 
+    <style name="update_layout_style">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

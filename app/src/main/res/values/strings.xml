@@ -6,4 +6,7 @@
     <string name="descrip">Description: </string>
     <string name="addEvent">Add Event</string>
     <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
 </resources>

@@ -7,6 +7,13 @@
     android:paddingEnd="18dp">
 
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        style="@style/update_layout_style" />
+
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
@@ -14,12 +21,26 @@
         android:ems="10"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/update_layout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/date" />
+
     <EditText
         android:id="@+id/editDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/update_layout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/descrip" />
 
     <EditText
         android:id="@+id/editDescription"
