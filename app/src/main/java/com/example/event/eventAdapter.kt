@@ -65,15 +65,20 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
                 val date = editDate.text.toString().trim()
                 val description = editDescription.text.toString().trim()
 
-                //incomplete
                 if(title.isEmpty()){
-                    editTitle.error = "Please enter a title."
-                    editTitle.requestFocus()
+                    Toast.makeText(mCtx,"Title cannot be empty.",Toast.LENGTH_SHORT).show()
+                    return
+                }
+                if(date.isEmpty()){
+                    Toast.makeText(mCtx,"Date cannot be empty.",Toast.LENGTH_SHORT).show()
+                    return
+                }
+                if(description.isEmpty()){
+                    Toast.makeText(mCtx,"Description cannot be empty.",Toast.LENGTH_SHORT).show()
                     return
                 }
 
                 val updatedEvent =  eventClass(event.id, title, date, description)
-
                 dbEvent.child(event.id).setValue(updatedEvent)
 
                 Toast.makeText(mCtx, "Event updated.", Toast.LENGTH_SHORT).show()

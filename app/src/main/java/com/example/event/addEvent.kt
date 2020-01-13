@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.event_layout.*
+import kotlinx.android.synthetic.main.update_layout.*
 
 
 class addEvent : AppCompatActivity() {
@@ -40,6 +41,11 @@ class addEvent : AppCompatActivity() {
         val date = editTxtDate.text.toString().trim()
         val description = editTxtDescription.text.toString().trim()
 
+        if(title.isEmpty() || date.isEmpty() || description.isEmpty()){
+            Toast.makeText(this,"Please fill in all fields.",Toast.LENGTH_LONG).show()
+            return
+        }
+
         val ref = FirebaseDatabase.getInstance().getReference("events")
         val eventId = ref.push().key.toString()
         val event = eventClass(eventId, title, date, description)
@@ -51,6 +57,7 @@ class addEvent : AppCompatActivity() {
         ref.child(eventId).setValue(event).addOnCompleteListener {
             Toast.makeText(applicationContext, "Event added.", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun goBack(){

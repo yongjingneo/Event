@@ -9,4 +9,5 @@
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="back">Back</string>
+    <string name="dateFormat">(yyyy-MM-DD)</string>
 </resources>
