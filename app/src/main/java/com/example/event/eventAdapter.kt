@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlin.time.measureTime
 
 class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<eventClass>)
     : ArrayAdapter<eventClass>(mCtx, layoutResId, eventList) {
@@ -51,25 +49,25 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
         val view = inflater.inflate(R.layout.update_layout, null)
 
-        val editTitle = view.findViewById<EditText>(R.id.editTitle)
-        val editDate = view.findViewById<EditText>(R.id.editDate)
-        val editLocation = view.findViewById<EditText>(R.id.editLocation)
-        val editDescription = view.findViewById<EditText>(R.id.editDescription)
+        val updateTitle = view.findViewById<EditText>(R.id.updateTitle)
+        val updateDate = view.findViewById<EditText>(R.id.updateDate)
+        val updateLocation = view.findViewById<EditText>(R.id.updateLocation)
+        val updateDescription = view.findViewById<EditText>(R.id.updateDescription)
 
-        editTitle.setText(event.title)
-        editDate.setText(event.date)
-        editLocation.setText(event.location)
-        editDescription.setText(event.description)
+        updateTitle.setText(event.title)
+        updateDate.setText(event.date)
+        updateLocation.setText(event.location)
+        updateDescription.setText(event.description)
 
         builder.setView(view)
         builder.setPositiveButton("Update",object :DialogInterface.OnClickListener{
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 val dbEvent = FirebaseDatabase.getInstance().getReference("events")
 
-                val title = editTitle.text.toString().trim()
-                val date = editDate.text.toString().trim()
-                val location = editLocation.text.toString().trim()
-                val description = editDescription.text.toString().trim()
+                val title = updateTitle.text.toString().trim()
+                val date = updateDate.text.toString().trim()
+                val location = updateLocation.text.toString().trim()
+                val description = updateDescription.text.toString().trim()
 
                 if(title.isEmpty()){
                     Toast.makeText(mCtx,"Title cannot be empty.",Toast.LENGTH_SHORT).show()
