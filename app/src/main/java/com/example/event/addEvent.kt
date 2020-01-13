@@ -15,6 +15,7 @@ import android.view.MotionEvent
 import android.view.View.OnTouchListener
 import android.widget.EditText
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.event_layout.*
 import kotlinx.android.synthetic.main.update_layout.*
