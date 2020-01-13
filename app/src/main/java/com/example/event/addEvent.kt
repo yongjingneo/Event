@@ -41,19 +41,21 @@ class addEvent : AppCompatActivity() {
     private fun saveEvent(){
         val title = editTxtTitle.text.toString().trim()
         val date = editTxtDate.text.toString().trim()
+        val location = editTxtLocation.text.toString().trim()
         val description = editTxtDescription.text.toString().trim()
 
-        if(title.isEmpty() || date.isEmpty() || description.isEmpty()){
+        if(title.isEmpty() || date.isEmpty() || location.isEmpty() || description.isEmpty()){
             Toast.makeText(this,"Please fill in all fields.",Toast.LENGTH_LONG).show()
             return
         }
 
         val ref = FirebaseDatabase.getInstance().getReference("events")
         val eventId = ref.push().key.toString()
-        val event = eventClass(eventId, title, date, description)
+        val event = eventClass(eventId, title, date, location, description)
 
         editTxtTitle.setText("")
         editTxtDate.setText("")
+        editTxtLocation.setText("")
         editTxtDescription.setText("")
 
         ref.child(eventId).setValue(event).addOnCompleteListener {
@@ -65,9 +67,10 @@ class addEvent : AppCompatActivity() {
     private fun goBack(){
         val title = editTxtTitle.text.toString().trim()
         val date = editTxtDate.text.toString().trim()
+        val location = editTxtLocation.text.toString().trim()
         val description = editTxtDescription.text.toString().trim()
 
-        if(title.length>0 || date.length>0 || description.length>0){
+        if(title.length>0 || date.length>0 || location.length>0 || description.length>0){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Event haven't save")
             builder.setMessage("Go back without saving event?")

@@ -65,6 +65,20 @@
                 android:inputType="date" />
 
             <TextView
+                android:id="@+id/textView8"
+                style="@style/titleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location" />
+
+            <EditText
+                android:id="@+id/editTxtLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
                 android:id="@+id/textView3"
                 style="@style/titleStyle"
                 android:layout_width="wrap_content"

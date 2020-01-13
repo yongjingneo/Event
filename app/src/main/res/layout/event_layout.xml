@@ -17,13 +17,34 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtDate"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ABD5DF"
-        android:text="TextView"
-        android:textColor="#646464" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ABD5DF"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="TextView"
+            android:textColor="#646464"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtLocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ABD5DF"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="TextView"
+            android:textColor="#646464"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txtDescription"

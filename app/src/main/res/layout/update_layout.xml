@@ -45,6 +45,21 @@
                 android:inputType="textPersonName" />
 
             <TextView
+                android:id="@+id/textView9"
+                style="@style/update_layout_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location" />
+
+            <EditText
+                android:id="@+id/editLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
                 android:id="@+id/textView7"
                 style="@style/update_layout_style"
                 android:layout_width="match_parent"

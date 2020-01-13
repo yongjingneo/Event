@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlin.time.measureTime
 
 class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<eventClass>)
     : ArrayAdapter<eventClass>(mCtx, layoutResId, eventList) {
@@ -19,6 +20,7 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
         val txtTitle = view.findViewById<TextView>(R.id.txtTitle)
         val txtDate = view.findViewById<TextView>(R.id.txtDate)
+        val txtLocation = view.findViewById<TextView>(R.id.txtLocation)
         val txtDescription = view.findViewById<TextView>(R.id.txtDescription)
         val btnUpdate = view.findViewById<Button>(R.id.btnUpdate)
         val btnDelete = view.findViewById<Button>(R.id.btnDelete)
@@ -27,6 +29,7 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
         txtTitle.text = event.title
         txtDate.text = event.date
+        txtLocation.text = event.location
         txtDescription.text = event.description
 
         btnUpdate.setOnClickListener(){
@@ -50,10 +53,12 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
         val editTitle = view.findViewById<EditText>(R.id.editTitle)
         val editDate = view.findViewById<EditText>(R.id.editDate)
+        val editLocation = view.findViewById<EditText>(R.id.editLocation)
         val editDescription = view.findViewById<EditText>(R.id.editDescription)
 
         editTitle.setText(event.title)
         editDate.setText(event.date)
+        editLocation.setText(event.location)
         editDescription.setText(event.description)
 
         builder.setView(view)
@@ -63,6 +68,7 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
                 val title = editTitle.text.toString().trim()
                 val date = editDate.text.toString().trim()
+                val location = editLocation.text.toString().trim()
                 val description = editDescription.text.toString().trim()
 
                 if(title.isEmpty()){
@@ -73,12 +79,16 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
                     Toast.makeText(mCtx,"Date cannot be empty.",Toast.LENGTH_SHORT).show()
                     return
                 }
+                if(location.isEmpty()){
+                    Toast.makeText(mCtx,"Location cannot be empty",Toast.LENGTH_SHORT).show()
+                    return
+                }
                 if(description.isEmpty()){
                     Toast.makeText(mCtx,"Description cannot be empty.",Toast.LENGTH_SHORT).show()
                     return
                 }
 
-                val updatedEvent =  eventClass(event.id, title, date, description)
+                val updatedEvent =  eventClass(event.id, title, date, location, description)
                 dbEvent.child(event.id).setValue(updatedEvent)
 
                 Toast.makeText(mCtx, "Event updated.", Toast.LENGTH_SHORT).show()
