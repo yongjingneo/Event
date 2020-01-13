@@ -9,13 +9,13 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity_for_user : AppCompatActivity() {
     lateinit var ref: DatabaseReference
     lateinit var eventList: MutableList<eventClass>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_for_user)
 
         eventList = mutableListOf()
         ref = FirebaseDatabase.getInstance().getReference("events")
@@ -32,17 +32,12 @@ class MainActivity : AppCompatActivity() {
                         eventList.add(event!!)
                     }
 
-                    val adapter = eventAdapter(this@MainActivity, R.layout.event_layout, eventList)
+                    val adapter = eventAdapter_for_user(this@MainActivity_for_user, R.layout.event_layout_for_user, eventList)
                     listView.adapter = adapter
                 }
             }
 
         })
-
-        btnAdd.setOnClickListener(){
-            val intent = Intent(this, addEvent::class.java)
-            startActivity(intent)
-        }
     }
 
 }
