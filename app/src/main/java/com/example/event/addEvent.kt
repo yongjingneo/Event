@@ -6,6 +6,8 @@ import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_add_event.*
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.view.inputmethod.InputMethodManager
 import android.view.ViewGroup
 import android.view.MotionEvent
@@ -13,6 +15,7 @@ import android.view.View.OnTouchListener
 import android.widget.EditText
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.event_layout.*
 
 
 class addEvent : AppCompatActivity() {
@@ -27,7 +30,7 @@ class addEvent : AppCompatActivity() {
         }
 
         btnGoBack.setOnClickListener(){
-            finish()
+            goBack()
         }
     }
 
@@ -42,9 +45,40 @@ class addEvent : AppCompatActivity() {
 
         val event = eventClass(eventId, title, date, description)
 
+        editTxtTitle.setText("")
+        editTxtDate.setText("")
+        editTxtDescription.setText("")
+
         ref.child(eventId).setValue(event).addOnCompleteListener{
-            Toast.makeText(applicationContext,"Completed",Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Event added.",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun goBack(){
+        val title = editTxtTitle.text.toString().trim()
+        val date = editTxtDate.text.toString().trim()
+        val description = editTxtDescription.text.toString().trim()
+
+        if(title.length>0 || date.length>0 || description.length>0){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Event haven't save")
+            builder.setMessage("Go back without saving event?")
+            builder.setPositiveButton("Yes",object :DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    finish()
+                }
+
+            })
+            builder.setNegativeButton("No",object :DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    return
+                }
+
+            })
+            builder.show()
+        }
+        else
+            finish()
     }
 
     fun hideSoftKeyboard(activity: Activity) {

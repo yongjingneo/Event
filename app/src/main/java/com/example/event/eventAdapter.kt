@@ -76,7 +76,7 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
 
                 dbEvent.child(event.id).setValue(updatedEvent)
 
-                Toast.makeText(mCtx, "Event updated successfully.", Toast.LENGTH_LONG).show()
+                Toast.makeText(mCtx, "Event updated.", Toast.LENGTH_SHORT).show()
 
             }
 
@@ -95,10 +95,27 @@ class eventAdapter(val mCtx: Context, val layoutResId: Int, val eventList: List<
     }
 
     private fun deleteEvent(event: eventClass){
-        val dbEvent = FirebaseDatabase.getInstance().getReference("events").child(event.id)
+        val builder = AlertDialog.Builder(mCtx)
+        builder.setTitle("Delete Event")
+        builder.setMessage("Are you sure to delete this event?")
+        builder.setPositiveButton("Yes", object :DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
 
-        dbEvent.removeValue()
+                val dbEvent = FirebaseDatabase.getInstance().getReference("events").child(event.id)
 
-        Toast.makeText(mCtx,"Event deleted.",Toast.LENGTH_LONG).show()
+                dbEvent.removeValue()
+
+                Toast.makeText(mCtx,"Event deleted.",Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        builder.setNegativeButton("No",object :DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                return
+            }
+
+        })
+
+        builder.show()
     }
 }
