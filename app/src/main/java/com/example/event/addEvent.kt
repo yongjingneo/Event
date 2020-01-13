@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_add_event.*
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.view.Gravity
 import android.view.inputmethod.InputMethodManager
 import android.view.ViewGroup
 import android.view.MotionEvent
@@ -40,17 +41,15 @@ class addEvent : AppCompatActivity() {
         val description = editTxtDescription.text.toString().trim()
 
         val ref = FirebaseDatabase.getInstance().getReference("events")
-
         val eventId = ref.push().key.toString()
-
         val event = eventClass(eventId, title, date, description)
 
         editTxtTitle.setText("")
         editTxtDate.setText("")
         editTxtDescription.setText("")
 
-        ref.child(eventId).setValue(event).addOnCompleteListener{
-            Toast.makeText(applicationContext,"Event added.",Toast.LENGTH_SHORT).show()
+        ref.child(eventId).setValue(event).addOnCompleteListener {
+            Toast.makeText(applicationContext, "Event added.", Toast.LENGTH_SHORT).show()
         }
     }
 
